@@ -1,5 +1,6 @@
 package me.chachy.ClearCommand;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.event.*;
 import cc.hyperium.internal.addons.IAddon;
 import javafx.scene.layout.Priority;
