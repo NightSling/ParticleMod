@@ -51,7 +51,6 @@ public class ParticleModGui extends ParticleGuiScreen {
     @Override
     public void onGuiClosed() {
         config.multiplier = this.sliderScale.getValueInt();
-        System.out.println(config.getMultiplier());
         Hyperium.CONFIG.save();
     }
 
