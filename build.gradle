@@ -1,5 +1,5 @@
-group 'me.chachy.ClearCommand'
-version '1.0-SNAPSHOT'
+group 'net.chachy'
+version '1.0'
 
 buildscript {
     repositories {
@@ -25,7 +25,7 @@ targetCompatibility = 1.8
 minecraft {
     version = "1.8.9"
     tweakClass = "cc.hyperium.launch.HyperiumTweaker"
-    mappings = "stable_20"
+    mappings = "stable_22"
     runDir = 'run'
     makeObfSourceJar = true
 }
@@ -36,4 +36,5 @@ repositories {
 
 dependencies {
      compile 'com.github.HyperiumClient:Hyperium:master-SNAPSHOT'
+     compile 'com.github.chachyyyy:ModUtils:master-SNAPSHOT'
 }
