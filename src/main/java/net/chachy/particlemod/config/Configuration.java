@@ -30,10 +30,6 @@ public class Configuration {
         return MULTIPLY_WITHOUT_CRITS;
     }
 
-    public void setMultiplier(int multiplier) {
-        this.multiplier = multiplier;
-    }
-
     public void setMultiplyWithoutCrits(boolean b) {
         this.MULTIPLY_WITHOUT_CRITS = b;
     }
