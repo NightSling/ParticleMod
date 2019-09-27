@@ -13,7 +13,6 @@ public class ParticleModGui extends ParticleGuiScreen {
     private boolean MULTIPLY_WITHOUT_CRITS = config.isMultiplyWithoutCrits();
 
 
-
     @Override
     public void initGui() {
         this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(1), 150, 20, getEnabledSuffix()));
@@ -46,7 +45,7 @@ public class ParticleModGui extends ParticleGuiScreen {
                 button.displayString = "Update Messages: " + getSuffix(config.showUpdateMessages());
                 break;
         }
-}
+    }
 
     @Override
     public void onGuiClosed() {
@@ -55,13 +54,13 @@ public class ParticleModGui extends ParticleGuiScreen {
     }
 
 /**
-     * Credit to {@author asbyth} for the row code, tooltips and row code. (Pretty much the whole code lmao)
-     */
+ * Credit to {@author asbyth} for the row code, tooltips and row code. (Pretty much the whole code lmao)
+ */
 
 
     /**
-     *
      * Custom suffix
+     *
      * @return
      */
     private String getEnabledSuffix() {
