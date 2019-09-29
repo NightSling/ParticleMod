@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-          - name: Build Starting Notification
+    - name: Build Starting Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
@@ -21,14 +21,7 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
-      - name: Release Beta Build
       - name: Build Success Notification
-        uses: softprops/action-gh-release@v1
-        with:
-          files: .build/libs/ParticleMod-1.0.jar
-          prerelease: true
-          body: "## ParticleMod Beta\nIf you find bugs, please report them.\n*Automatically built by the CI System*"
-          name: "ParticleMod Beta"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
  - name: Discord notification 2
