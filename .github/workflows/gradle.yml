@@ -32,10 +32,3 @@ jobs:
         run: |
           COMMIT_DESCRIPTION=$(git log --pretty=format:"%s by %an (%D)" -n 1)
           curl -H "Content-Type: application/json" -X POST -d "{\"embeds\": [{\"title\": \"Build Successful\",\"color\": 3066993, \"description\": \"Successfully built \`\`$COMMIT_DESCRIPTION\`\`\"}]}" $DISCORD_WEBHOOK
-        with:
-            files: .build/libs/ExampleAddon-1.0.jar 
-          prerelease: true
-            body: "##Beta\n🚀 This is a beta build! If you encounter bugs, please report them!\n*Automatically built by the CI System*"
-            name: "Beta Build"
-            env:
-              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
