@@ -30,7 +30,7 @@ jobs:
           body: "## ParticleMod Beta\nIf you find bugs, please report them.\n*Automatically built by the CI System*"
           name: "ParticleMod Beta"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
  - name: Discord notification 2
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
