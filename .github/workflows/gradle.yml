@@ -13,7 +13,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-        echo "Thanks to Conor for the build file!"
+          echo "Thanks to Conor for the build file!"
           COMMIT_DESCRIPTION=$(git log --pretty=format:"%s by %an (%D)" -n 1)
           curl -H "Content-Type: application/json" -X POST -d "{\"embeds\": [{\"title\": \"Building Mod\",\"color\": 3447003, \"description\": \"Building \`\`$COMMIT_DESCRIPTION\`\`\"}]}" $DISCORD_WEBHOOK
       - name: Download JDK 1.8 # actions/setup-java@v1 doesn't download it correctly, so we download it manually and pass the file to setup-java
