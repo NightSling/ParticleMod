@@ -29,7 +29,7 @@ public class UpdateHandler {
 
     @InvokeEvent
     public void onWorldJoin(EntityJoinWorldEvent event) {
-        if (event.getEntity() == Minecraft.getMinecraft().thePlayer && Configuration.INSTANCE.showUpdateMessages() && isLatestVersion)  {
+        if (event.getEntity() == Minecraft.getMinecraft().thePlayer && Configuration.INSTANCE.showUpdateMessages() && !isLatestVersion)  {
             sendUpdateMessage();
         }
 
@@ -37,7 +37,7 @@ public class UpdateHandler {
 
     @InvokeEvent
     public void onServerJoin(ServerJoinEvent event) {
-        if (Configuration.INSTANCE.showUpdateMessages() && isLatestVersion) {
+        if (Configuration.INSTANCE.showUpdateMessages() && !isLatestVersion) {
             sendUpdateMessage();
         }
 
