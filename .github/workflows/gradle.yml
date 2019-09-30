@@ -1,4 +1,4 @@
-name: Build MediaMod for Minecraft Forge
+name: Build ParticleMod
 
 on: [push]
 
