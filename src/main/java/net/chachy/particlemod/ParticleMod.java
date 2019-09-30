@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ParticleMod implements IAddon {
+    public static ParticleMod INSTANCE = new ParticleMod();
     /**
      * The Particle Mod Main class.
      */
@@ -37,5 +38,17 @@ public class ParticleMod implements IAddon {
     @Override
     public void onClose() {
         LOGGER.info("Shutting down ParticleMod " + VERSION);
+    }
+
+    /**
+     * Dev environment check
+     */
+    public boolean isDevEnvironment() {
+        try {
+            return Class.forName("net.minecraft.client.Minecraft").getDeclaredField("theMinecraft") != null;
+        } catch (NoSuchFieldException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

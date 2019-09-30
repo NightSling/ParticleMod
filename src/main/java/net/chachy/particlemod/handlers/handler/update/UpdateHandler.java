@@ -17,15 +17,7 @@ public class UpdateHandler {
     /**
      * Fire update messages if they aren't updated, currently disabled due to it not being on my api yet.
      */
-    private boolean isLatestVersion;
-
-    {
-        try {
-            isLatestVersion = ChachyMod.INSTANCE.isLatestVersion("ParticleMod", ParticleMod.VERSION);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private final boolean isLatestVersion = ChachyMod.INSTANCE.isLatestVersion("ParticleAddon", ParticleMod.VERSION);
 
     @InvokeEvent
     public void onWorldJoin(EntityJoinWorldEvent event) {
@@ -50,8 +42,7 @@ public class UpdateHandler {
                 new ChatComponentText(
                         prefix +
                                 "A new version of Particle Addon is out! \n " +
-                                "Get it at https://api.chachy.tk/static/downloads/ParticleAddon-"
-                                + ChachyMod.INSTANCE.parseJson("https://api.chachy.tk/get/mod/particleAddon/latestVersion").getAsJsonObject().get("version").getAsString()
-                                + ".jar"));
+                                "Get it at https://api.chachy.tk/download/ParticleAddon/"
+                                + ChachyMod.INSTANCE.parseJson("https://api.chachy.tk/get/mod/ParticleAddon").getAsJsonObject().get("version").getAsString()));
     }
 }
