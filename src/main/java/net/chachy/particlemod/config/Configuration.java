@@ -11,7 +11,6 @@ public class Configuration {
      * Initialize an instance of this class for non-static methods.
      */
     public static Configuration INSTANCE = new Configuration();
-
     // Create a boolean for enabling/disabling the mod.
     @ConfigOpt
     private boolean enabled = true;

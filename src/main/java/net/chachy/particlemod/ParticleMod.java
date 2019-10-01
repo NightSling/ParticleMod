@@ -48,6 +48,7 @@ public class ParticleMod implements IAddon {
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new ParticleGuiCommand());
         // Register the config to the client's config stored in hyperium/CONFIG.json
         Hyperium.CONFIG.register(new Configuration());
+        // Register the handlers from ParticleHandlers
         ParticleHandlers.getHandlers().registerHandlers();
         LOGGER.info("Registered Config, Handlers and Command!");
     }
