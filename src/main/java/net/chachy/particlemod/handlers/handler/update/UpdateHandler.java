@@ -15,7 +15,7 @@ import static cc.hyperium.utils.ChatColor.*;
 
 public class UpdateHandler {
     /**
-     * Fire update messages if they aren't updated, currently disabled due to it not being on my api yet.
+     * Fire update messages if they aren't updated.
      */
     private final boolean isLatestVersion = ChachyMod.INSTANCE.isLatestVersion("ParticleAddon", ParticleMod.VERSION);
 
@@ -41,8 +41,7 @@ public class UpdateHandler {
         Minecraft.getMinecraft().thePlayer.addChatMessage(
                 new ChatComponentText(
                         prefix +
-                                "A new version of Particle Addon is out! \n " +
-                                "Get it at https://api.chachy.tk/download/ParticleAddon/"
+                                "A new version of Particle Addon is out! Get it at https://api.chachy.tk/download/ParticleAddon/"
                                 + ChachyMod.INSTANCE.parseJson("https://api.chachy.tk/get/mod/ParticleAddon").getAsJsonObject().get("version").getAsString()));
     }
 }

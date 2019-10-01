@@ -6,21 +6,17 @@ import net.chachy.modutils.http.HttpUtils;
 import net.chachy.particlemod.ParticleMod;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ChachyMod {
+    /**
+     * A simple class for mod utils
+     */
     public static ChachyMod INSTANCE = new ChachyMod();
 
-    public boolean isLatestVersion(String name, String version) {
-        if (ParticleMod.INSTANCE.isDevEnvironment()) {
-            return false;
-        } else {
-            try {
-                return new JsonParser().parse(HttpUtils.get("https://api.chachy.tk/get/mod/" + name)).getAsJsonObject().get("latest_version").getAsString().equalsIgnoreCase(version);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
+    public final boolean isLatestVersion(String mod, String version) {
+        if (ParticleMod.INSTANCE.isDevEnvironment()) return true;
+        return Objects.requireNonNull(getVersion(mod)).equalsIgnoreCase(version);
     }
 
 
@@ -33,7 +29,7 @@ public class ChachyMod {
         return null;
     }
 
-    public String getVersion(String mod) {
+    public final String getVersion(String mod) {
         try {
             return new JsonParser().parse(HttpUtils.get("https://api.chachy.tk/get/mod/" + mod)).getAsJsonObject().get("version").getAsString();
         } catch (IOException e) {

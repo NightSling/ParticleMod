@@ -24,7 +24,7 @@ public class ParticleMod implements IAddon {
     public void onLoad() {
         EventBus.INSTANCE.register(this);
 
-        LOGGER.info("Particle Mod has been initialized.");
+        LOGGER.info("Particle Addon has been initialized.");
     }
 
     @InvokeEvent
