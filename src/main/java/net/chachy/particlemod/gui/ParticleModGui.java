@@ -7,6 +7,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiSlider;
 
+import java.awt.*;
+
 public class ParticleModGui extends ParticleGuiScreen {
     private Configuration config = Configuration.INSTANCE;
     private GuiSlider sliderScale;
@@ -16,17 +18,17 @@ public class ParticleModGui extends ParticleGuiScreen {
     @Override
     public void initGui() {
         this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(1), 150, 20, getEnabledSuffix()));
-        this.buttonList.add(new GuiButton(3, this.getCenter() - 75, this.getRowPos(3), 150, 20, "Always Particles: " + getSuffix(MULTIPLY_WITHOUT_CRITS)));
-        this.buttonList.add(new GuiButton(4, this.getCenter() - 75, this.getRowPos(4), 150, 20, "Update Messages: " + getSuffix(config.showUpdateMessages())));
         this.buttonList.add(sliderScale = new GuiSlider(2, this.getCenter() - 75, this.getRowPos(2), 150, 20, "Particle Multiplier: ", "", 1.0, 100.0, config.getMultiplier(), false, true));
+        this.buttonList.add(new GuiButton(3, this.getCenter() - 75, this.getRowPos(3), 150, 20, "Always Particles: " + getSuffix(MULTIPLY_WITHOUT_CRITS)));
+        this.buttonList.add(new GuiButton(4, this.getCenter() - 75, this.getRowPos(4), 150, 20, "Multiply on animals: " + getSuffix(config.isMultiplyOnAnimals())));
+        this.buttonList.add(new GuiButton(5, this.getCenter() - 75, this.getRowPos(5), 150, 20, "Update Messages: " + getSuffix(config.showUpdateMessages())));
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        drawCenteredString(fontRendererObj, "ParticleMod", getCenter(), getRowPos(1), 16777215);
+        drawCenteredString(mc.fontRendererObj, "Particle Addon", getCenter(), getRowPos(0), Color.WHITE.getRGB());
         this.drawWorldBackground(1);
         super.drawScreen(mouseX, mouseY, partialTicks);
-
     }
 
     @Override
@@ -41,6 +43,10 @@ public class ParticleModGui extends ParticleGuiScreen {
                 button.displayString = "Always Particles: " + getSuffix(config.isMultiplyWithoutCrits());
                 break;
             case 4:
+                config.setMultiplyOnAnimals(!config.isMultiplyOnAnimals());
+                button.displayString = "Multiply on animals: " + getSuffix(config.isMultiplyOnAnimals());
+                break;
+            case 5:
                 config.setUpdateMessages(!config.showUpdateMessages());
                 button.displayString = "Update Messages: " + getSuffix(config.showUpdateMessages());
                 break;
@@ -53,17 +59,20 @@ public class ParticleModGui extends ParticleGuiScreen {
         Hyperium.CONFIG.save();
     }
 
-/**
- * Credit to {@author asbyth} for the row code, tooltips and row code. (Pretty much the whole code lmao)
- */
+    /**
+     * Credit to {@author asbyth} for the row code, tooltips and row code. (Pretty much the whole code)
+     */
 
 
     /**
      * Custom suffix
-     *
-     * @return
      */
     private String getEnabledSuffix() {
         return config.isEnabled() ? ("Enabled: " + EnumChatFormatting.GREEN + "True") : ("Disabled: " + EnumChatFormatting.RED + "False");
+    }
+
+    @Override
+    public boolean doesGuiPauseGame() {
+        return false;
     }
 }
