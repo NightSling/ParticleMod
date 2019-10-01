@@ -15,21 +15,25 @@ public class ParticleMod implements IAddon {
      * The Particle Mod Main class.
      *
      * @author chachy
+     *
      * @see cc.hyperium.internal.addons.IAddon
      */
-    /**
-     * Create an instance of this class for non-static methods.
-     */
+
+    // Create an instance of this class for non-static methods.
     public static ParticleMod INSTANCE = new ParticleMod();
+
     /**
      * Initialize the logger used for sending errors and general info to the logs
      *
      * @see LogManager
      */
+
     private static Logger LOGGER = LogManager.getLogger("ParticleAddon");
+
     /**
      * Create a version variable (used for {@link net.chachy.particlemod.handlers.handler.update.UpdateHandler}
      */
+
     public final String VERSION = "1.0";
 
     @Override

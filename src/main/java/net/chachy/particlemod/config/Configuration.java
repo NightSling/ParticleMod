@@ -3,8 +3,8 @@ package net.chachy.particlemod.config;
 import cc.hyperium.config.ConfigOpt;
 
 public class Configuration {
-    /**
-     * The configuration class.
+    /*
+      The configuration class.
      */
 
     /**
