@@ -23,7 +23,7 @@ public class ParticleGuiCommand implements BaseCommand {
     }
 
 
-    // Register the commmand usage.
+    // Register the command usage.
     @Override
     public String getUsage() {
         return "/" + getName();
