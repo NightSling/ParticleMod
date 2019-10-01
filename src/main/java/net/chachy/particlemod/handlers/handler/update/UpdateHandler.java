@@ -1,5 +1,6 @@
 package net.chachy.particlemod.handlers.handler.update;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.event.EntityJoinWorldEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerJoinEvent;
@@ -7,11 +8,6 @@ import net.chachy.particlemod.ParticleMod;
 import net.chachy.particlemod.config.Configuration;
 import net.chachy.utils.ChachyMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ChatComponentText;
-
-import java.io.IOException;
-
-import static cc.hyperium.utils.ChatColor.*;
 
 public class UpdateHandler {
     /**
@@ -37,11 +33,7 @@ public class UpdateHandler {
 
 
     private void sendUpdateMessage() {
-        String prefix = DARK_AQUA + "[" + AQUA + BOLD + "ParticleAddon" + DARK_AQUA + "] " + WHITE + "";
-        Minecraft.getMinecraft().thePlayer.addChatMessage(
-                new ChatComponentText(
-                        prefix +
-                                "A new version of Particle Addon is out! Get it at https://api.chachy.tk/download/ParticleAddon/"
-                                + ChachyMod.INSTANCE.parseJson("https://api.chachy.tk/get/mod/ParticleAddon").getAsJsonObject().get("version").getAsString()));
+        Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage(
+                "A new version of Particle Addon is out! Get it at https://api.chachy.tk/download/ParticleAddon/" + ChachyMod.INSTANCE.getVersion("ParticleAddon"));
     }
 }

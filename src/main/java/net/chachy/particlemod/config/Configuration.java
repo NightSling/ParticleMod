@@ -17,6 +17,9 @@ public class Configuration {
     public int multiplier = 1;
 
     @ConfigOpt
+    private boolean MULITPLY_ON_ANIMALS = false;
+
+    @ConfigOpt
     private boolean MULTIPLY_WITHOUT_CRITS = false;
 
     @ConfigOpt
@@ -48,5 +51,13 @@ public class Configuration {
 
     public void setUpdateMessages(boolean update) {
         this.UPDATE_MESSAGES = update;
+    }
+
+    public boolean isMultiplyOnAnimals() {
+        return MULITPLY_ON_ANIMALS;
+    }
+
+    public void setMultiplyOnAnimals(boolean b) {
+        this.MULITPLY_ON_ANIMALS = b;
     }
 }

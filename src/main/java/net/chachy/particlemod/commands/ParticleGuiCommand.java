@@ -24,7 +24,7 @@ public class ParticleGuiCommand implements BaseCommand {
 
     @Override
     public List<String> getCommandAliases() {
-        return Arrays.asList("particlem", "partmod", "particleaddon", "partaddon", "particlea");
+        return Arrays.asList("particlemod", "particleaddon");
     }
 
     @Override
