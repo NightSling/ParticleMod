@@ -11,13 +11,22 @@ import net.minecraft.client.Minecraft;
 
 public class UpdateHandler {
     /**
-     * Fire update messages if they aren't updated.
+     * Class used for handling if they're on the latest version.
      */
-    private final boolean isLatestVersion = ChachyMod.INSTANCE.isLatestVersion("ParticleAddon", ParticleMod.VERSION);
 
+    // Initialize a final boolean to check if the mod is at it's latest version.
+    private final boolean isLatestVersion = ChachyMod.INSTANCE.isLatestVersion("ParticleAddon", ParticleMod.INSTANCE.VERSION);
+
+    /**
+     * If the event {@link EntityJoinWorldEvent} is posted, it runs this method
+     *
+     * @see cc.hyperium.event.EventBus
+     */
     @InvokeEvent
     public void onWorldJoin(EntityJoinWorldEvent event) {
+        // Check if the entity joined is the player, the update messages option is enabled and isn't the latest version
         if (event.getEntity() == Minecraft.getMinecraft().thePlayer && Configuration.INSTANCE.showUpdateMessages() && !isLatestVersion)  {
+            // Run the update message method.
             sendUpdateMessage();
         }
 
@@ -25,14 +34,16 @@ public class UpdateHandler {
 
     @InvokeEvent
     public void onServerJoin(ServerJoinEvent event) {
+        // Check if update messages are enabled and isn't the latest version.
         if (Configuration.INSTANCE.showUpdateMessages() && !isLatestVersion) {
+            // Run the update message method.
             sendUpdateMessage();
         }
 
     }
 
-
     private void sendUpdateMessage() {
+        // Send a message using Hyperium#sendMessage() to tell the user a new version is out.
         Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage(
                 "A new version of Particle Addon is out! Get it at https://api.chachy.tk/download/ParticleAddon/" + ChachyMod.INSTANCE.getVersion("ParticleAddon"));
     }
