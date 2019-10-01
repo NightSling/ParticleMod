@@ -29,9 +29,9 @@ public class ParticleGuiCommand implements BaseCommand {
 
     @Override
     public void onExecute(String[] args) {
-        if (args.length == 0) {
+        if (args.length == 0 || !args[0].equalsIgnoreCase("value")) {
             Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new ParticleModGui());
-        } else if (args[0].equalsIgnoreCase("value")) {
+        } else {
             Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("The multiplier is at " + Configuration.INSTANCE.getMultiplier());
         }
     }
