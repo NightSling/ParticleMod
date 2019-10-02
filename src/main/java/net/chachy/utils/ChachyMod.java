@@ -29,7 +29,7 @@ public class ChachyMod {
             // Send a stacktrace to the log to say there was an error.
             e.printStackTrace();
         }
-        // If an error is thrown use the version and act as if it's update to date. In case my api is down it would crash people.
+        // If an error is thrown use the version and act as if it's update to date. In case my api is down it would have crashed people.
         // TODO: if it throws an error, check every 10m until it responds with an accepted code.
         return ParticleMod.INSTANCE.VERSION;
     }
