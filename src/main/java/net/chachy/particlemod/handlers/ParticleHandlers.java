@@ -1,8 +1,14 @@
 package net.chachy.particlemod.handlers;
 
 import cc.hyperium.event.EventBus;
+import net.chachy.particlemod.ParticleMod;
 import net.chachy.particlemod.handlers.handler.particle.ParticleHandler;
 import net.chachy.particlemod.handlers.handler.update.UpdateHandler;
+import net.chachy.particlemod.handlers.utils.Handler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ParticleHandlers {
     // Create a private static initialization of the class
@@ -27,11 +33,16 @@ public class ParticleHandlers {
         return INSTANCE;
     }
 
-    // Register the handlers to the EventBus
-    public void registerHandlers() {
-        // Register particleHandler to the EventBus
-        EventBus.INSTANCE.register(particleHandler);
-        // Register updateHandler to the EventBus
-        EventBus.INSTANCE.register(updateHandler);
+    // Register handlers.
+    public void registerHandler(Handler... handler) {
+        // Create an array list with
+        ArrayList<Handler> handlers = new ArrayList<>();
+        // Convert all of the arguments into an array
+        handlers.toArray(handler);
+        // Register each handler in the event bus.
+        handlers.forEach(h -> {
+            EventBus.INSTANCE.register(h);
+            ParticleMod.LOGGER.info("Successfully loaded " + h.getHandlerName());
+        });
     }
 }

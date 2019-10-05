@@ -4,9 +4,12 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.InitializationEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.internal.addons.IAddon;
+import net.chachy.modutils.utils.DevUtils;
 import net.chachy.particlemod.command.ParticleGuiCommand;
 import net.chachy.particlemod.config.Configuration;
 import net.chachy.particlemod.handlers.ParticleHandlers;
+import net.chachy.particlemod.handlers.handler.particle.ParticleHandler;
+import net.chachy.particlemod.handlers.handler.update.UpdateHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +31,7 @@ public class ParticleMod implements IAddon {
      * @see LogManager
      */
 
-    private static Logger LOGGER = LogManager.getLogger("ParticleAddon");
+    public static Logger LOGGER = LogManager.getLogger("ParticleAddon");
 
     /**
      * Create a version variable (used for {@link net.chachy.particlemod.handlers.handler.update.UpdateHandler}
@@ -49,7 +52,7 @@ public class ParticleMod implements IAddon {
         // Register the config to the client's config stored in hyperium/CONFIG.json
         Hyperium.CONFIG.register(new Configuration());
         // Register the handlers from ParticleHandlers
-        ParticleHandlers.getHandlers().registerHandlers();
+        ParticleHandlers.getHandlers().registerHandler(new ParticleHandler(), new UpdateHandler());
         LOGGER.info("Registered Config, Handlers and Command!");
     }
 
@@ -61,23 +64,9 @@ public class ParticleMod implements IAddon {
         LOGGER.info("Shutting down ParticleMod " + VERSION);
     }
 
-    /**
-     * Dev environment check
-     */
-    public boolean isDevEnvironment() {
-        try {
-           // Check if the method Minecraft#theMinecraft is not null
-            return Class.forName("net.minecraft.client.Minecraft").getDeclaredField("theMinecraft") != null;
-        } catch (NoSuchFieldException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        // If an exception is thrown it automatically returns false;
-        return false;
-    }
-
     public void sendDebugToConsole(String debug) {
         // Used for debugging
-        if (isDevEnvironment()) {
+        if (DevUtils.INSTANCE.isMinecraftDevelopmentEnvironment()) {
             // Check for the dev environment just in case someone pushes with a debug.
             LOGGER.debug(debug);
         }

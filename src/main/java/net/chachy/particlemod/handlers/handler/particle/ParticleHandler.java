@@ -3,6 +3,7 @@ package net.chachy.particlemod.handlers.handler.particle;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.PlayerAttackEntityEvent;
 import net.chachy.particlemod.config.Configuration;
+import net.chachy.particlemod.handlers.utils.Handler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -11,7 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EntityDamageSource;
 
-public class ParticleHandler {
+public class ParticleHandler implements Handler {
+
+    @Override
+    public String getHandlerName() {
+        return "ParticleHandler";
+    }
+
     @InvokeEvent
     public void onAttack(PlayerAttackEntityEvent event) {
         // Create a variable for Configuration#getMultiplier()
