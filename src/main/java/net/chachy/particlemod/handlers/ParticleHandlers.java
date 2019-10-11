@@ -34,15 +34,8 @@ public class ParticleHandlers {
     }
 
     // Register handlers.
-    public void registerHandler(Handler... handler) {
-        // Create an array list with
-        ArrayList<Handler> handlers = new ArrayList<>();
-        // Convert all of the arguments into an array
-        handlers.toArray(handler);
-        // Register each handler in the event bus.
-        handlers.forEach(h -> {
-            EventBus.INSTANCE.register(h);
-            ParticleMod.LOGGER.info("Successfully loaded " + h.getHandlerName());
-        });
+    public void registerHandler(Handler handler) {
+       // Register handler to eventbus
+        EventBus.INSTANCE.register(handler);
     }
 }
