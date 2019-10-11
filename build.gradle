@@ -34,7 +34,12 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
 dependencies {
      compile 'com.github.HyperiumClient:Hyperium:master-SNAPSHOT'
-     compile 'com.github.chachyyyy:ModUtils:master-SNAPSHOT'
+     embed 'com.github.chachyyyy:ModUtils:master-SNAPSHOT'
 }
