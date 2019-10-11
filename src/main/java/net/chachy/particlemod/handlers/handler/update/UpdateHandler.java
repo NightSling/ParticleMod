@@ -51,6 +51,6 @@ public class UpdateHandler implements Handler {
     private void sendUpdateMessage() {
         // Send a message using Hyperium#sendMessage() to tell the user a new version is out.
         Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage(
-                "A new version of Particle Addon is out! Get it at https://api.chachy.tk/download/ParticleAddon/" + ChachyMod.INSTANCE.getVersion(() -> "ParticleAddon"));
+                "A new version of Particle Addon is out! Get it at https://api.chachy.co.uk/download/ParticleAddon/" + ChachyMod.INSTANCE.getVersion(() -> "ParticleAddon"));
     }
 }

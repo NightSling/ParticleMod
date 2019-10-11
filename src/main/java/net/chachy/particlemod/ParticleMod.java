@@ -1,9 +1,11 @@
 package net.chachy.particlemod;
 
 import cc.hyperium.Hyperium;
+import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InitializationEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.internal.addons.IAddon;
+import net.chachy.modutils.ChachyMod;
 import net.chachy.modutils.utils.DevUtils;
 import net.chachy.particlemod.command.ParticleGuiCommand;
 import net.chachy.particlemod.config.Configuration;
@@ -43,6 +45,7 @@ public class ParticleMod implements IAddon {
     public void onLoad() {
         // Tell the logs that the addon has been loaded
         LOGGER.info("Particle Addon has been initialized.");
+        EventBus.INSTANCE.register(this);
     }
 
     @InvokeEvent
@@ -54,6 +57,7 @@ public class ParticleMod implements IAddon {
         // Register the handlers from ParticleHandlers
         ParticleHandlers.getHandlers().registerHandler(new ParticleHandler(), new UpdateHandler());
         LOGGER.info("Registered Config, Handlers and Command!");
+        EventBus.INSTANCE.register(this);
     }
 
     @Override
