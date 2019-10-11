@@ -4,10 +4,7 @@ import cc.hyperium.Hyperium;
 import net.chachy.particlemod.config.Configuration;
 import net.chachy.particlemod.gui.helper.ParticleGuiScreen;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiSlider;
-
-import java.awt.*;
 
 public class ParticleModGui extends ParticleGuiScreen {
     // Initialize the config instance as a variable.
@@ -19,9 +16,10 @@ public class ParticleModGui extends ParticleGuiScreen {
     @Override
     public void initGui() {
         // Create a button to toggle the mod.
-        this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(1), 150, 20, getEnabledSuffix()));
+        this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(1), 150, 20, getSuffix(config.isEnabled())));
         // Create a button to initialize the slider variable.
-        this.buttonList.add(sliderScale = new GuiSlider(2, this.getCenter() - 75, this.getRowPos(2), 150, 20, "Particle Multiplier: ", "", 1.0, 100.0, config.getMultiplier(), false, true));
+        this.buttonList.add(sliderScale = new GuiSlider(2, this.getCenter() - 75, this.getRowPos(2),
+                150, 20, "Particle Multiplier: ", "", 1.0, 100.0, config.getMultiplier(), false, true));
         // Create a button to toggle the Multiply without Critical option.
         this.buttonList.add(new GuiButton(3, this.getCenter() - 75, this.getRowPos(3), 150, 20, "Always Multiply: " + getSuffix(config.isMultiplyWithoutCrits())));
         // Create a button to toggle the Multiply on Animals option.
@@ -32,10 +30,10 @@ public class ParticleModGui extends ParticleGuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        // Draw text onto the screen reading "Particle Addon" in the center of the rows.
-        drawCenteredString(mc.fontRendererObj, "Particle Addon", getCenter(), getRowPos(0), Color.WHITE.getRGB());
         // Create a tint behind the background
         this.drawWorldBackground(1);
+        // Draw text onto the screen reading "Particle Addon" in the center of the rows.
+        drawCenteredString(mc.fontRendererObj, "Particle Addon", getCenter(), getRowPos(0), -1);
         // Draw the screen.
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
@@ -46,17 +44,17 @@ public class ParticleModGui extends ParticleGuiScreen {
             case 1:
                 // Set the boolean to enabled/disabled and change the text.
                 config.setEnabled(!config.isEnabled());
-                button.displayString = getEnabledSuffix();
+                button.displayString = getSuffix(config.isEnabled());
                 break;
             case 3:
                 // Set the boolean to enabled/disabled and change the text.
                 config.setMultiplyWithoutCrits(!config.isMultiplyWithoutCrits());
-                button.displayString = "Always Particles: " + getSuffix(config.isMultiplyWithoutCrits());
+                button.displayString = "Always Multiply: " + getSuffix(config.isMultiplyWithoutCrits());
                 break;
             case 4:
                 // Set the boolean to enabled/disabled and change the text.
                 config.setMultiplyOnAnimals(!config.isMultiplyOnAnimals());
-                button.displayString = "Multiply on animals: " + getSuffix(config.isMultiplyOnAnimals());
+                button.displayString = "Multiply on Animals: " + getSuffix(config.isMultiplyOnAnimals());
                 break;
             case 5:
                 // Set the boolean to enabled/disabled and change the text.
@@ -72,19 +70,6 @@ public class ParticleModGui extends ParticleGuiScreen {
         config.multiplier = this.sliderScale.getValueInt();
         // Save the configuration.
         Hyperium.CONFIG.save();
-    }
-
-    /*
-      Credit to asbyth for the row code, tooltips and row code.
-     */
-
-
-    /**
-     * Custom suffix
-     */
-    private String getEnabledSuffix() {
-        // Instead of using ParticleGuiScreen#getSuffix it uses this for simplicity.
-        return config.isEnabled() ? ("Enabled: " + EnumChatFormatting.GREEN + "True") : ("Disabled: " + EnumChatFormatting.RED + "False");
     }
 
     @Override
