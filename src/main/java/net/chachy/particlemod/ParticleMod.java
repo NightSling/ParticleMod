@@ -5,7 +5,6 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InitializationEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.internal.addons.IAddon;
-import net.chachy.modutils.ChachyMod;
 import net.chachy.modutils.utils.DevUtils;
 import net.chachy.particlemod.command.ParticleGuiCommand;
 import net.chachy.particlemod.config.Configuration;
@@ -36,7 +35,7 @@ public class ParticleMod implements IAddon {
     public static Logger LOGGER = LogManager.getLogger("ParticleAddon");
 
     /**
-     * Create a version variable (used for {@link net.chachy.particlemod.handlers.handler.update.UpdateHandler}
+     * Create a version variable (used for {@link net.chachy.particlemod.handlers.handler.update.UpdateHandler})
      */
 
     public final String VERSION = "1.0";
@@ -53,7 +52,7 @@ public class ParticleMod implements IAddon {
         // Register the Gui Command
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new ParticleGuiCommand());
         // Register the config to the client's config stored in hyperium/CONFIG.json
-        Hyperium.CONFIG.register(new Configuration());
+        Hyperium.CONFIG.register(Configuration.INSTANCE);
         // Register the handlers from ParticleHandlers
         ParticleHandlers.getHandlers().registerHandler(new ParticleHandler());
         ParticleHandlers.getHandlers().registerHandler(new UpdateHandler());

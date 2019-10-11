@@ -19,8 +19,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = 1.8
 
 minecraft {
     version = "1.8.9"

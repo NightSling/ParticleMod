@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 public class HttpUtils {
     public static String get(String url) throws IOException {
@@ -15,15 +16,9 @@ public class HttpUtils {
         InputStream is = conn.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
-        StringBuilder out = new StringBuilder();
-
-        String inputLine;
-        while((inputLine = br.readLine()) != null) {
-            out.append(inputLine);
-        }
-
+        String out = br.lines().collect(Collectors.joining());
         br.close();
-        return out.toString();
+        return out;
     }
 
 }
