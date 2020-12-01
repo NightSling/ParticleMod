@@ -10,8 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build Starting Notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           echo "Thanks to Conor for the build file!"
           COMMIT_DESCRIPTION=$(git log --pretty=format:"%s by %an (%D)" -n 1)
@@ -27,8 +25,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Build Success Notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           COMMIT_DESCRIPTION=$(git log --pretty=format:"%s by %an (%D)" -n 1)
           curl -H "Content-Type: application/json" -X POST -d "{\"embeds\": [{\"title\": \"Build Successful\",\"color\": 3066993, \"description\": \"Successfully built \`\`$COMMIT_DESCRIPTION\`\`\"}]}" $DISCORD_WEBHOOK
